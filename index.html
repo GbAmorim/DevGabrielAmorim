@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Animação Scroll Zoom - Área Específica</title>
+    <link rel="stylesheet" href="style.css">
+
+    <!-- Importando Three.js e Loaders -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/three@0.128.0/examples/js/loaders/GLTFLoader.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/three@0.128.0/examples/js/loaders/DRACOLoader.js"></script>
+
+    <!-- Importando GSAP e ScrollTrigger -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+</head>
+
+<body>
+    <!-- Camadas de Efeito Frontal -->
+    <div class="screen-overlay"></div>
+    <div class="screen-overlay-2"></div>
+
+    <!-- Cabeçalho Distribuído -->
+    <header class="main-header">
+        <div class="logo">
+            <img src="/teste/logowhite.svg" alt="" style="width: 80px;">
+        </div>
+
+        <nav class="nav-container">
+            <ul class="nav-list">
+                <li class="nav-item"><a href="#" class="nav-link">Home</a></li>
+                <li class="nav-item"><a href="#" class="nav-link">Sobre</a></li>
+                <li class="nav-item"><a href="#" class="nav-link">Projetos</a></li>
+                <li class="nav-item"><a href="#" class="nav-link">Contato</a></li>
+            </ul>
+        </nav>
+
+        <div class="phone-container">
+            <a href="tel:+5511999999999" class="phone-link">
+                <span class="phone-icon">📞</span> +55 11 99999-9999
+            </a>
+        </div>
+    </header>
+
+    <!-- Container 3D Fixo (fundo ocupando toda a tela) -->
+    <div class="webgl-container">
+        <canvas id="webgl-canvas"></canvas>
+    </div>
+
+    <!-- Vídeo oculto para ser usado na tela do monitor 3D -->
+    <video id="video-source" style="display: none;" loop muted playsinline autoplay crossorigin="anonymous">
+        <!-- Vídeo de teste funcional -->
+        <source src="video.mp4" type="video/mp4">
+        <!-- Fallback: se o primeiro não carregar -->
+        <source src="https://www.w3schools.com/html/mov_bbb.mp4" type="video/mp4">
+    </video>
+
+
+    <!-- Conteúdo posicionado à esquerda -->
+    <main class="scroll-content">
+        <section class="section">
+            <h1>Desenvolvedor Freelancer</h1>
+            <p>O modelo do computador está na direita. Continue descendo a página para focar na tela.</p>
+        </section>
+
+        <section class="section" style="height: 100vh;">
+            <h2>Quase lá...</h2>
+            <p>A câmera está se movendo dinamicamente para os pontos que configuramos no JavaScript.</p>
+        </section>
+
+        <section class="section fade-out-section">
+            <!-- Este texto e área desaparecerão na última etapa para mostrar 100% da tela do PC -->
+            <h2>Ampliado!</h2>
+            <p>Agora a tela do 3D preenche a sua visão.</p>
+        </section>
+
+        <!-- Seção extra para dar "espaço" ao gatilho de navegação -->
+        <section class="nav-trigger-section" style="height: 50vh;"></section>
+    </main>
+
+    <script src="script.js" defer></script>
+</body>
+
+</html>

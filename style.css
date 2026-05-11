@@ -1,0 +1,216 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html, body {
+    scrollbar-width: none; /* Firefox */
+    -ms-overflow-style: none; /* IE and Edge */
+}
+
+html::-webkit-scrollbar, 
+body::-webkit-scrollbar {
+    display: none; /* Chrome, Safari e Opera */
+    width: 0;
+    height: 0;
+}
+
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: #000000;
+    color: #ffffff;
+    overflow-x: hidden;
+}
+
+.screen-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 200vw;
+    /* Dobro da largura para a animação lateral */
+    height: 100vh;
+    background-image: url('/teste/389988dcdaef11d7_dirt.jpg');
+    background-size: 50% 100%;
+    /* Metade da largura do container (100vw) */
+    background-repeat: repeat-x;
+    background-position: center;
+    z-index: 200;
+    pointer-events: none;
+    mix-blend-mode: screen;
+    opacity: 0.3;
+    animation: slide-smoke 60s linear infinite;
+}
+
+.screen-overlay-2 {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background-image: url('/teste/e46fc7bc6a6ab7f2_rgba_noise.png');
+    background-size: 100px;
+    /* Define o tamanho de cada "quadrado" da repetição */
+    background-repeat: repeat;
+    /* Repete na horizontal e vertical */
+    z-index: 201;
+    pointer-events: none;
+    mix-blend-mode: screen;
+    opacity: 0.1;
+}
+
+@keyframes slide-smoke {
+    from {
+        transform: translateX(0);
+    }
+
+    to {
+        transform: translateX(-50%);
+    }
+}
+
+.webgl-container {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    z-index: 1;
+    pointer-events: none;
+}
+
+#webgl-canvas {
+    width: 100%;
+    height: 100%;
+    display: block;
+}
+
+.scroll-content {
+    position: relative;
+    z-index: 2;
+    width: 50vw;
+    pointer-events: auto;
+}
+
+.section {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+    padding: 4rem;
+}
+
+h1 {
+    font-size: 3.5rem;
+    margin-bottom: 1rem;
+    text-shadow: 2px 2px 15px rgba(0, 0, 0, 0.9);
+}
+
+h2 {
+    font-size: 2.5rem;
+    margin-bottom: 1rem;
+    text-shadow: 2px 2px 10px rgba(0, 0, 0, 0.9);
+}
+
+p {
+    font-size: 1.25rem;
+    text-shadow: 2px 2px 10px rgba(0, 0, 0, 0.9);
+    max-width: 500px;
+}
+
+/* Novo Cabeçalho Distribuído */
+.main-header {
+    position: fixed;
+    top: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 95%;
+    max-width: 1400px;
+    z-index: 100;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 12px 40px;
+    background: rgba(255, 255, 255, 0.03);
+    backdrop-filter: blur(15px);
+    -webkit-backdrop-filter: blur(15px);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 24px;
+    transition: all 0.4s ease;
+}
+
+.main-header:hover {
+    background: rgba(255, 255, 255, 0.06);
+    border-color: rgba(255, 255, 255, 0.2);
+}
+
+.logo {
+    font-size: 1.4rem;
+    font-weight: 900;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    background: linear-gradient(to right, #fff, #888);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    flex: 1;
+    /* Ocupa espaço para ajudar no alinhamento central */
+}
+
+.nav-container {
+    flex: 2;
+    display: flex;
+    justify-content: center;
+}
+
+.nav-list {
+    display: flex;
+    list-style: none;
+    gap: 10px;
+}
+
+.nav-link {
+    text-decoration: none;
+    color: rgba(255, 255, 255, 0.6);
+    font-size: 0.85rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    padding: 10px 20px;
+    border-radius: 14px;
+    transition: all 0.3s ease;
+}
+
+.nav-link:hover {
+    background: rgba(255, 255, 255, 0.1);
+    color: #ffffff;
+}
+
+.phone-container {
+    flex: 1;
+    display: flex;
+    justify-content: flex-end;
+}
+
+.phone-link {
+    text-decoration: none;
+    color: #fff;
+    font-size: 0.9rem;
+    font-weight: 500;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    background: rgba(255, 255, 255, 0.08);
+    padding: 10px 20px;
+    border-radius: 14px;
+    transition: all 0.3s ease;
+}
+
+.phone-link:hover {
+    background: rgba(255, 255, 255, 0.15);
+    transform: translateY(-2px);
+}
+
+.phone-icon {
+    font-size: 1.1rem;
+}

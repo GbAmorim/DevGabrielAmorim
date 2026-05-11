@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Página Interna - Monitor</title>
+    <style>
+        body {
+            margin: 0;
+            background-color: #000;
+            color: white;
+            font-family: sans-serif;
+            overflow-x: hidden;
+            scrollbar-width: none; /* Firefox */
+            -ms-overflow-style: none; /* IE/Edge */
+        }
+        body::-webkit-scrollbar {
+            display: none; /* Chrome/Safari */
+        }
+        html {
+            scrollbar-width: none;
+            -ms-overflow-style: none;
+        }
+        html::-webkit-scrollbar {
+            display: none;
+        }
+        .container {
+            height: 200vh; /* Para permitir scroll */
+            padding: 50px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            background: linear-gradient(180deg, #111 0%, #000 100%);
+        }
+        h1 { font-size: 3rem; margin-top: 100px; }
+        p { font-size: 1.5rem; color: #888; }
+        .back-hint {
+            position: fixed;
+            top: 20px;
+            background: rgba(255,255,255,0.1);
+            padding: 10px 20px;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            backdrop-filter: blur(10px);
+        }
+    </style>
+</head>
+<body>
+    <div class="back-hint">↑ Scrole para cima para voltar ao computador</div>
+
+    <div class="container">
+        <h1>Bem-vindo ao Sistema</h1>
+        <p>Você acabou de entrar no monitor!</p>
+        <div style="margin-top: 500px;">
+            <h2>Continue navegando...</h2>
+            <p>Esta é a sua nova página de destino.</p>
+        </div>
+    </div>
+
+    <script>
+        // Lógica simplificada e agressiva para retornar
+        function goBack() {
+            window.location.replace('index.html?back=true');
+        }
+
+        window.addEventListener('wheel', function(e) {
+            // Se estiver no topo e scrolar para cima (deltaY < 0)
+            if (window.scrollY <= 0 && e.deltaY < 0) {
+                goBack();
+            }
+        }, { passive: true });
+
+        // Touch para mobile
+        let startY = 0;
+        window.addEventListener('touchstart', (e) => { startY = e.touches[0].pageY; }, { passive: true });
+        window.addEventListener('touchmove', (e) => {
+            if (window.scrollY <= 0 && e.touches[0].pageY > startY + 50) {
+                goBack();
+            }
+        }, { passive: true });
+    </script>
+</body>
+</html>
