@@ -217,14 +217,22 @@ loader.load(modelPath, (gltf) => {
 
     pcGroup.add(computerModel);
 
-    // POSIÇÃO — direita do usuário
-    pcGroup.position.set(6, -0.2, 6);
+    // RESPONSIVIDADE DO MODELO 3D
+    const isMobile = window.innerWidth <= 900;
 
-    // ESCALA — ampliado
-    pcGroup.scale.set(3.5, 3.5, 3.5);
-
-    // ROTAÇÃO — um pouco mais virado pra mostrar a tela
-    pcGroup.rotation.set(0, -Math.PI / 5, 0);
+    if (isMobile) {
+        // Ajustes para Celular: mais centralizado, mais para cima e menor
+        pcGroup.position.set(0, -0.5, 2);
+        pcGroup.scale.set(1.8, 1.8, 1.8);
+        pcGroup.rotation.set(0, -Math.PI / 6, 0);
+    } else {
+        // Desktop: POSIÇÃO — direita do usuário
+        pcGroup.position.set(6, -0.2, 6);
+        // ESCALA — ampliado
+        pcGroup.scale.set(3.5, 3.5, 3.5);
+        // ROTAÇÃO — um pouco mais virado pra mostrar a tela
+        pcGroup.rotation.set(0, -Math.PI / 5, 0);
+    }
 
     // Calcula os alvos da câmera baseados na posição da tela
     if (telaMesh) {
@@ -397,3 +405,39 @@ window.addEventListener('resize', () => {
     renderer.setSize(window.innerWidth, window.innerHeight);
     renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
 });
+
+
+const transition = document.querySelector('.page-transition')
+
+document.querySelectorAll('a').forEach(link => {
+
+    link.addEventListener('click', (e) => {
+
+        const href = link.getAttribute('href')
+
+        // ignora links inválidos
+        if (
+            href.startsWith('#') ||
+            href.startsWith('tel:') ||
+            href.startsWith('mailto:')
+        ) {
+            return
+        }
+
+        e.preventDefault()
+
+        transition.classList.add('active')
+
+        setTimeout(() => {
+            window.location.href = href
+        }, 700)
+
+    })
+
+})
+
+window.addEventListener('pageshow', () => {
+
+    transition.classList.remove('active')
+
+})

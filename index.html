@@ -5,7 +5,13 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Animação Scroll Zoom - Área Específica</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Bruno+Ace+SC&family=Tinos:ital,wght@0,400;0,700;1,400;1,700&display=swap"
+        rel="stylesheet">
     <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="global.css">
 
     <!-- Importando Three.js e Loaders -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
@@ -18,6 +24,8 @@
 </head>
 
 <body>
+
+    <div class="page-transition"></div>
     <!-- Camadas de Efeito Frontal -->
     <div class="screen-overlay"></div>
     <div class="screen-overlay-2"></div>
@@ -25,13 +33,13 @@
     <!-- Cabeçalho Distribuído -->
     <header class="main-header">
         <div class="logo">
-            <img src="/teste/logowhite.svg" alt="" style="width: 80px;">
+            <img src="/teste/images/logowhite.svg" alt="" style="width: 80px;">
         </div>
 
         <nav class="nav-container">
             <ul class="nav-list">
                 <li class="nav-item"><a href="#" class="nav-link">Home</a></li>
-                <li class="nav-item"><a href="#" class="nav-link">Sobre</a></li>
+                <li class="nav-item"><a href="outra.html" class="nav-link">Sobre</a></li>
                 <li class="nav-item"><a href="#" class="nav-link">Projetos</a></li>
                 <li class="nav-item"><a href="#" class="nav-link">Contato</a></li>
             </ul>
@@ -39,7 +47,7 @@
 
         <div class="phone-container">
             <a href="tel:+5511999999999" class="phone-link">
-                <span class="phone-icon">📞</span> +55 11 99999-9999
+                <img src="images/whatsapp.svg" class="phone-icon"> Whatsapp
             </a>
         </div>
     </header>
@@ -61,19 +69,23 @@
     <!-- Conteúdo posicionado à esquerda -->
     <main class="scroll-content">
         <section class="section">
-            <h1>Desenvolvedor Freelancer</h1>
-            <p>O modelo do computador está na direita. Continue descendo a página para focar na tela.</p>
+            <h1>Desenvolvedor Front-end</h1>
+            <p>Role a página e descubra como transformo linhas de código em experiências digitais imersivas e de alto
+                impacto.</p>
+
         </section>
 
         <section class="section" style="height: 100vh;">
-            <h2>Quase lá...</h2>
-            <p>A câmera está se movendo dinamicamente para os pontos que configuramos no JavaScript.</p>
+            <h2>Sua Próxima Experiência Digital <br> Começa Aqui.</h2>
+            <p>Desenvolvedor Front-end focado em performance e design intuitivo. Continue descendo para explorar um
+                portfólio feito para surpreender você.</p>
         </section>
 
         <section class="section fade-out-section">
             <!-- Este texto e área desaparecerão na última etapa para mostrar 100% da tela do PC -->
-            <h2>Ampliado!</h2>
-            <p>Agora a tela do 3D preenche a sua visão.</p>
+            <h2>Interfaces Inteligentes. Resultados Reais.</h2>
+            <p>Transformo ideias complexas em interfaces limpas e prontas para o mercado. Continue descendo e veja a
+                mágica acontecer.</p>
         </section>
 
         <!-- Seção extra para dar "espaço" ao gatilho de navegação -->

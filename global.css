@@ -1,0 +1,89 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html,
+body {
+    scrollbar-width: none;
+    /* Firefox */
+    -ms-overflow-style: none;
+    /* IE and Edge */
+}
+
+html::-webkit-scrollbar,
+body::-webkit-scrollbar {
+    display: none;
+    /* Chrome, Safari e Opera */
+    width: 0;
+    height: 0;
+}
+
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: #000000;
+    color: #ffffff;
+    overflow-x: hidden;
+}
+
+
+.page-transition {
+    position: fixed;
+    inset: 0;
+
+    background: url("/teste/images/carregamento2.png");
+
+    z-index: 9999;
+
+    transform: scaleY(0);
+    transform-origin: bottom;
+
+    transition: transform 0.7s ease;
+}
+
+/* quando ativa */
+.page-transition.active {
+    transform: scaleY(1);
+}
+
+/* animação de entrada */
+
+
+/* Animação de Brilho ao entrar */
+.screen-flash {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    width: 10px;
+    height: 10px;
+    background: white;
+    border-radius: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 10000;
+    pointer-events: none;
+    box-shadow: 0 0 100px 50px white;
+    opacity: 0;
+}
+
+.screen-flash.active {
+    animation: flash-expand 1.2s ease-out forwards;
+}
+
+@keyframes flash-expand {
+    0% {
+        transform: translate(-50%, -50%) scale(1);
+        opacity: 1;
+        box-shadow: 0 0 100px 50px white;
+    }
+
+    30% {
+        box-shadow: 0 0 200px 100px white;
+    }
+
+    100% {
+        transform: translate(-50%, -50%) scale(500);
+        opacity: 0;
+        box-shadow: 0 0 0 0 transparent;
+    }
+}

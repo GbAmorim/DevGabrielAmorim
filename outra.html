@@ -1,83 +1,562 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Página Interna - Monitor</title>
-    <style>
-        body {
-            margin: 0;
-            background-color: #000;
-            color: white;
-            font-family: sans-serif;
-            overflow-x: hidden;
-            scrollbar-width: none; /* Firefox */
-            -ms-overflow-style: none; /* IE/Edge */
-        }
-        body::-webkit-scrollbar {
-            display: none; /* Chrome/Safari */
-        }
-        html {
-            scrollbar-width: none;
-            -ms-overflow-style: none;
-        }
-        html::-webkit-scrollbar {
-            display: none;
-        }
-        .container {
-            height: 200vh; /* Para permitir scroll */
-            padding: 50px;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            background: linear-gradient(180deg, #111 0%, #000 100%);
-        }
-        h1 { font-size: 3rem; margin-top: 100px; }
-        p { font-size: 1.5rem; color: #888; }
-        .back-hint {
-            position: fixed;
-            top: 20px;
-            background: rgba(255,255,255,0.1);
-            padding: 10px 20px;
-            border-radius: 20px;
-            font-size: 0.9rem;
-            backdrop-filter: blur(10px);
-        }
-    </style>
+    <title>Portfolio Profissional - Frontend Developer</title>
+    <!-- Google Fonts: Inter para design moderno Apple-style -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap"
+        rel="stylesheet">
+
+    <link rel="stylesheet" href="global.css">
+    <link rel="stylesheet" href="sobre.css">
+
+    <!-- GSAP -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js" defer></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js" defer></script>
+    <script src="outra.js" defer></script>
 </head>
-<body>
-    <div class="back-hint">↑ Scrole para cima para voltar ao computador</div>
 
-    <div class="container">
-        <h1>Bem-vindo ao Sistema</h1>
-        <p>Você acabou de entrar no monitor!</p>
-        <div style="margin-top: 500px;">
-            <h2>Continue navegando...</h2>
-            <p>Esta é a sua nova página de destino.</p>
-        </div>
+<body class="modern-portfolio">
+
+    <div class="screen-flash"></div>
+    <div class="page-transition"></div>
+
+    <!-- Ambient Glow Centralizado e Background Logo -->
+    <div class="background-logo">
+        <img src="/teste/images/logowhite.svg" alt="Background Logo">
     </div>
+    <div class="ambient-glow-center"></div>
 
-    <script>
-        // Lógica simplificada e agressiva para retornar
-        function goBack() {
-            window.location.replace('index.html?back=true');
-        }
+    <!-- Header do index.html -->
+    <header class="main-header">
+        <div class="logo">
+            <img src="/teste/images/logowhite.svg" alt="" style="width: 80px;">
+        </div>
 
-        window.addEventListener('wheel', function(e) {
-            // Se estiver no topo e scrolar para cima (deltaY < 0)
-            if (window.scrollY <= 0 && e.deltaY < 0) {
-                goBack();
-            }
-        }, { passive: true });
+        <nav class="nav-container">
+            <ul class="nav-list">
+                <li class="nav-item"><a href="index.html" class="nav-link">Home</a></li>
+                <li class="nav-item"><a href="outra.html" class="nav-link">Sobre</a></li>
+                <li class="nav-item"><a href="#projetos" class="nav-link">Projetos</a></li>
+                <li class="nav-item"><a href="#contato" class="nav-link">Contato</a></li>
+            </ul>
+        </nav>
 
-        // Touch para mobile
-        let startY = 0;
-        window.addEventListener('touchstart', (e) => { startY = e.touches[0].pageY; }, { passive: true });
-        window.addEventListener('touchmove', (e) => {
-            if (window.scrollY <= 0 && e.touches[0].pageY > startY + 50) {
-                goBack();
-            }
-        }, { passive: true });
-    </script>
+        <div class="phone-container">
+            <a href="tel:+5521983856721" class="phone-link">
+                <img src="images/whatsapp.svg" class="phone-icon"> Whatsapp
+            </a>
+        </div>
+    </header>
+
+    <main class="portfolio-content">
+        <!-- Hero Section -->
+        <section class="hero-section">
+            <div class="hero-content">
+                <h2 class="hero-subtitle gsap-fade-up">DESENVOLVEDOR FRONT-END</h2>
+                <h1 class="hero-title gsap-reveal">Criando Experiências<br>Digitais <span
+                        class="gradient-text">Memoráveis</span></h1>
+                <p class="hero-description gsap-fade-up">Soluções web modernas com foco absoluto em performance,
+                    interatividade e design de alto nível.</p>
+                <div class="hero-actions gsap-fade-up">
+                    <a href="#projetos" class="btn-primary">Ver Projetos</a>
+                    <a href="#contato" class="btn-secondary">Contato</a>
+                </div>
+            </div>
+            <!-- Infinite Marquee na parte inferior do hero -->
+            <div class="marquee-container gsap-fade-in">
+                <div class="marquee-track">
+                    <span>REACT</span> <span class="dot">•</span>
+                    <span>HTML</span> <span class="dot">•</span>
+                    <span>CSS</span> <span class="dot">•</span>
+                    <span>GSAP ANIMATIONS</span> <span class="dot">•</span>
+                    <span>UI/UX DESIGN</span> <span class="dot">•</span>
+                    <span>TAILWINDCSS</span> <span class="dot">•</span>
+                    <span>THREE.JS</span> <span class="dot">•</span>
+                    <span>JAVASCRIPT</span> <span class="dot">•</span>
+                    <span>PYTHON</span> <span class="dot">•</span>
+                    <span>IA</span> <span class="dot">•</span>
+                    <span>LANGCHAIN</span> <span class="dot">•</span>
+                    <!-- Duplicate for infinite loop -->
+                    <span>REACT</span> <span class="dot">•</span>
+                    <span>HTML</span> <span class="dot">•</span>
+                    <span>CSS</span> <span class="dot">•</span>
+                    <span>GSAP ANIMATIONS</span> <span class="dot">•</span>
+                    <span>UI/UX DESIGN</span> <span class="dot">•</span>
+                    <span>TAILWINDCSS</span> <span class="dot">•</span>
+                    <span>THREE.JS</span> <span class="dot">•</span>
+                    <span>JAVASCRIPT</span> <span class="dot">•</span>
+                    <span>PYTHON</span> <span class="dot">•</span>
+                    <span>IA</span> <span class="dot">•</span>
+                    <span>LANGCHAIN</span> <span class="dot">•</span>
+                </div>
+            </div>
+        </section>
+
+        <!-- Sobre Section -->
+        <section id="sobre" class="about-section">
+            <div class="section-container">
+                <div class="about-grid">
+                    <div class="about-image gsap-fade-right">
+                        <img src="/teste/images/gabriel2-removebg-preview.png" alt="Sua Foto">
+                    </div>
+                    <div class="about-text gsap-fade-up">
+                        <h2 class="section-title">Sobre Mim</h2>
+                        <p>Olá, me chamo Gabriel Amorim de Ceia, sou desenvolvedor frontend com formação em Ciência da
+                            Computação. Antes de mergulhar no mundo da programação, atuei como artista 3D em projetos
+                            voltados para o metaverso e NFTs. Hoje, aplico minha criatividade no desenvolvimento de
+                            interfaces web, buscando unir design, usabilidade e performance em cada projeto.</p>
+                        <div class="buttons">
+                            <div class="about-action-btn">
+                                <a href="https://github.com/GbAmorim" target="_blank" class="github-glow-btn">
+                                    <span>GitHub</span>
+                                    <svg viewBox="0 0 24 24" width="20" height="20" fill="currentColor">
+                                        <path
+                                            d="M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12" />
+                                    </svg>
+                                </a>
+                            </div>
+
+                            <div class="about-action-btn">
+                                <a href="https://www.linkedin.com/in/gabrielamorimdeceia/" target="_blank"
+                                    class="github-glow-btn">
+                                    <span>Linkedin</span>
+                                    <svg viewBox="0 0 24 24" width="20" height="20" fill="currentColor">
+                                        <path
+                                            d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z" />
+                                    </svg>
+                                </a>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Tecnologias Section -->
+        <section id="tecnologias" class="tech-section">
+            <div class="section-container">
+                <h2 class="section-title center-text gsap-reveal">Tecnologias</h2>
+                <div class="tech-grid">
+                    <div class="tech-card glass-card gsap-stagger-card">
+                        <img src="images/html.svg" alt="HTML5" class="tech-icon-img">
+                        <h3>HTML5</h3>
+                    </div>
+                    <div class="tech-card glass-card gsap-stagger-card">
+                        <img src="images/css.svg" alt="CSS3" class="tech-icon-img">
+                        <h3>CSS3</h3>
+                    </div>
+                    <div class="tech-card glass-card gsap-stagger-card">
+                        <img src="images/javascript.svg" alt="JavaScript" class="tech-icon-img">
+                        <h3>JavaScript</h3>
+                    </div>
+                    <div class="tech-card glass-card gsap-stagger-card">
+                        <img src="images/tailwind.svg" alt="tailwind" class="tech-icon-img">
+                        <h3>Tailwind</h3>
+                    </div>
+                    <div class="tech-card glass-card gsap-stagger-card">
+                        <img src="images/react.svg" alt="React" class="tech-icon-img">
+                        <h3>React</h3>
+                    </div>
+                    <div class="tech-card glass-card gsap-stagger-card">
+                        <img src="images/bootstrap.svg" alt="Bootstrap" class="tech-icon-img">
+                        <h3>bootstrap</h3>
+                    </div>
+                    <div class="tech-card glass-card gsap-stagger-card">
+                        <img src="images/sass.svg" alt="Sass" class="tech-icon-img">
+                        <h3>Sass</h3>
+                    </div>
+                    <div class="tech-card glass-card gsap-stagger-card">
+                        <img src="images/figma.svg" alt="Figma" class="tech-icon-img">
+                        <h3>Figma</h3>
+                    </div>
+                    <div class="tech-card glass-card gsap-stagger-card">
+                        <img src="images/git.svg" alt="Git" class="tech-icon-img">
+                        <h3>Git & GitHub</h3>
+                    </div>
+                    <div class="tech-card glass-card gsap-stagger-card">
+                        <img src="images/python.svg" alt="python" class="tech-icon-img">
+                        <h3>Python</h3>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Projetos Section -->
+        <section id="projetos" class="projects-section">
+            <div class="section-container">
+                <h2 class="section-title center-text gsap-reveal">Projetos em Destaque</h2>
+                <div class="projects-grid">
+                    <!-- Projeto 1 -->
+                    <div class="project-card glass-card gsap-stagger-card">
+                        <div class="project-image">
+                            <!-- Placeholder visual elegante -->
+                            <div class="placeholder-gradient"><img src="images/calculadora investimento.png"
+                                    alt="Calculadora de Investimentos"></div>
+                            <div class="project-overlay">
+                                <a href="https://calculadora-investimentos2-0.vercel.app/" class="btn-icon"
+                                    title="Acessar Deploy" target="_blank">
+                                    <svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor"
+                                        stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                        <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path>
+                                        <polyline points="15 3 21 3 21 9"></polyline>
+                                        <line x1="10" y1="14" x2="21" y2="3"></line>
+                                    </svg>
+                                </a>
+                                <a href="https://github.com/GbAmorim/CalculadoraInvestimentos2.0" class="btn-icon"
+                                    title="Ver no GitHub" target="_blank">
+                                    <svg viewBox="0 0 24 24" width="24" height="24" fill="currentColor">
+                                        <path
+                                            d="M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12" />
+                                    </svg>
+                                </a>
+                            </div>
+                        </div>
+                        <div class="project-info">
+                            <span class="project-category">Web Aplicativo</span>
+                            <h3 class="project-title">Calculadora de Investimentos</h3>
+                            <p>Este projeto consiste em uma calculadora de investimentos desenvolvida em JavaScript,
+                                HTML e CSS. A ferramenta permite que o usuário simule a evolução de investimentos ao
+                                longo do tempo, visualizando os resultados em tabelas e gráficos.</p>
+                        </div>
+                    </div>
+
+                    <!-- Projeto 2 -->
+                    <div class="project-card glass-card gsap-stagger-card">
+                        <div class="project-image">
+                            <div class="placeholder-gradient"><img src="images/xadrez.png" alt="Xadrez"></div>
+                            <div class="project-overlay">
+                                <a href="https://mestresdo-xadrez.vercel.app/" class="btn-icon" target="_blank"><svg
+                                        viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor"
+                                        stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                        <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path>
+                                        <polyline points="15 3 21 3 21 9"></polyline>
+                                        <line x1="10" y1="14" x2="21" y2="3"></line>
+                                    </svg></a>
+                                <a href="https://github.com/GbAmorim/MestresdoXadrez" class="btn-icon"
+                                    target="_blank"><svg viewBox="0 0 24 24" width="24" height="24" fill="currentColor">
+                                        <path
+                                            d="M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12" />
+                                    </svg></a>
+                            </div>
+                        </div>
+                        <div class="project-info">
+                            <span class="project-category">Web Aplicativo</span>
+                            <h3 class="project-title">Site de Xadrez com API do Chess.com</h3>
+                            <p>Nesse site, o usuário pode ver os lances das jogadas em tempo real e baixar o arquivo em
+                                pdf, mostrando cada lance da partida. As partidas são puxadas dos jogos do chess.com</p>
+                        </div>
+                    </div>
+
+                    <!-- Projeto 3 -->
+                    <div class="project-card glass-card gsap-stagger-card">
+                        <div class="project-image">
+                            <div class="placeholder-gradient"><img src="images/sacole.png" alt="sacole"></div>
+                            <div class="project-overlay">
+                                <a href="https://www.linkedin.com/posts/gabrielamorimdeceia_durante-a-rotina-do-sacol%C3%A9-do-bosque-ficou-ugcPost-7419803534440906752-ppXI?utm_source=share&utm_medium=member_desktop&rcm=ACoAAEDAAfMBf5LTBszClJ6xGd9PXfU_H_N5YLk"
+                                    class="btn-icon" target="_blank"><svg viewBox="0 0 24 24" width="24" height="24"
+                                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                        stroke-linejoin="round">
+                                        <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path>
+                                        <polyline points="15 3 21 3 21 9"></polyline>
+                                        <line x1="10" y1="14" x2="21" y2="3"></line>
+                                    </svg></a>
+                            </div>
+                        </div>
+                        <div class="project-info">
+                            <span class="project-category">Web Aplicativo</span>
+                            <h3 class="project-title">Web Aplicativo - Sacolé do Bosque</h3>
+                            <p>Esse web aplicativo foi desenvolvido para um comércio local de sacolé, onde só funciona
+                                para um prédio em específico. Moradores do predio, podem fazer seus pedidos através
+                                dele.</p>
+                        </div>
+                    </div>
+
+                    <!-- Projeto 4 -->
+                    <div class="project-card glass-card gsap-stagger-card">
+                        <div class="project-image">
+                            <div class="placeholder-gradient "><img src="images/mcdonalds.png" alt="mcdonalds"></div>
+                            <div class="project-overlay">
+                                <a href="https://fullstackweek-donalds-qdmp68183-gbamorims-projects.vercel.app/fsw-donalds"
+                                    class="btn-icon" target="_blank"><svg viewBox="0 0 24 24" width="24" height="24"
+                                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                        stroke-linejoin="round">
+                                        <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path>
+                                        <polyline points="15 3 21 3 21 9"></polyline>
+                                        <line x1="10" y1="14" x2="21" y2="3"></line>
+                                    </svg></a>
+                                <a href="https://github.com/GbAmorim/fullstackweek-donalds" class="btn-icon"
+                                    target="_blank"><svg viewBox="0 0 24 24" width="24" height="24" fill="currentColor">
+                                        <path
+                                            d="M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12" />
+                                    </svg></a>
+                            </div>
+                        </div>
+                        <div class="project-info">
+                            <span class="project-category">Web Aplicativo</span>
+                            <h3 class="project-title">Réplica do Sistema de pedidos do MCDonald's</h3>
+                            <p>Sistema de autoatendimento, como aqueles do Mc Donald 's e Burger King, onde você chega e
+                                faz o seu pedido sem falar com o atendente.</p>
+                        </div>
+                    </div>
+                    <!-- Projeto 5 -->
+                    <div class="project-card glass-card gsap-stagger-card">
+                        <div class="project-image">
+                            <div class="placeholder-gradient "><img src="images/stranger.png" alt="Stranger Things">
+                            </div>
+                            <div class="project-overlay">
+                                <a href="#" class="btn-icon"><svg viewBox="0 0 24 24" width="24" height="24" fill="none"
+                                        stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                        stroke-linejoin="round">
+                                        <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path>
+                                        <polyline points="15 3 21 3 21 9"></polyline>
+                                        <line x1="10" y1="14" x2="21" y2="3"></line>
+                                    </svg></a>
+                                <a href="#" class="btn-icon"><svg viewBox="0 0 24 24" width="24" height="24"
+                                        fill="currentColor">
+                                        <path
+                                            d="M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12" />
+                                    </svg></a>
+                            </div>
+                        </div>
+                        <div class="project-info">
+                            <span class="project-category">Landing Page</span>
+                            <h3 class="project-title">Stranger Things
+                            </h3>
+                            <p>Esse site possibilita o usuário a pesquisar filmes através de uma API e salva-los
+                                utilizando localstorage.</p>
+                        </div>
+                    </div>
+
+                    <!-- Projeto 6 -->
+                    <div class="project-card glass-card gsap-stagger-card">
+                        <div class="project-image">
+                            <div class="placeholder-gradient"><img src="images/landingpage.png"
+                                    alt="Landing Page Bootstrap"></div>
+                            <div class="project-overlay">
+                                <a href="#" class="btn-icon"><svg viewBox="0 0 24 24" width="24" height="24" fill="none"
+                                        stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                        stroke-linejoin="round">
+                                        <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path>
+                                        <polyline points="15 3 21 3 21 9"></polyline>
+                                        <line x1="10" y1="14" x2="21" y2="3"></line>
+                                    </svg></a>
+                                <a href="#" class="btn-icon"><svg viewBox="0 0 24 24" width="24" height="24"
+                                        fill="currentColor">
+                                        <path
+                                            d="M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12" />
+                                    </svg></a>
+                            </div>
+                        </div>
+                        <div class="project-info">
+                            <span class="project-category">Landing Page</span>
+                            <h3 class="project-title">Landing Page Bootstrap</h3>
+                            <p>Landing page desenvolvida através do curso de programação frontend da hashtag
+                                treinamentos.</p>
+                        </div>
+                    </div>
+
+                    <!-- Projeto 7 -->
+                    <div class="project-card glass-card gsap-stagger-card">
+                        <div class="project-image">
+                            <div class="placeholder-gradient "><img src="images/hashtag.png" alt="Hashtag Treinamentos">
+                            </div>
+                            <div class="project-overlay">
+                                <a href="https://site-portal-hashtag-treinamentos.vercel.app/" class="btn-icon"
+                                    target="_blank"><svg viewBox="0 0 24 24" width="24" height="24" fill="none"
+                                        stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                        stroke-linejoin="round">
+                                        <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path>
+                                        <polyline points="15 3 21 3 21 9"></polyline>
+                                        <line x1="10" y1="14" x2="21" y2="3"></line>
+                                    </svg></a>
+                                <a href="https://github.com/GbAmorim/Site-Portal-Hashtag-Treinamentos" class="btn-icon"
+                                    target="_blank"><svg viewBox="0 0 24 24" width="24" height="24" fill="currentColor">
+                                        <path
+                                            d="M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12" />
+                                    </svg></a>
+                            </div>
+                        </div>
+                        <div class="project-info">
+                            <span class="project-category">Site Institucional</span>
+                            <h3 class="project-title">Site - Portal Hashtag treinamentos</h3>
+                            <p>Site desenvolvido no curso de programação da Hashtag Treinamentos, feito apenas em Css e
+                                Html.</p>
+                        </div>
+                    </div>
+
+                    <!-- Projeto 8 -->
+                    <div class="project-card glass-card gsap-stagger-card">
+                        <div class="project-image">
+                            <div class="placeholder-gradient"><img src="images/portifolio.png" alt="portifolio"></div>
+                            <div class="project-overlay">
+                                <a href="#" class="btn-icon"><svg viewBox="0 0 24 24" width="24" height="24" fill="none"
+                                        stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                        stroke-linejoin="round">
+                                        <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path>
+                                        <polyline points="15 3 21 3 21 9"></polyline>
+                                        <line x1="10" y1="14" x2="21" y2="3"></line>
+                                    </svg></a>
+                                <a href="#" class="btn-icon"><svg viewBox="0 0 24 24" width="24" height="24"
+                                        fill="currentColor">
+                                        <path
+                                            d="M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12" />
+                                    </svg></a>
+                            </div>
+                        </div>
+                        <div class="project-info">
+                            <span class="project-category">Site Portfólio</span>
+                            <h3 class="project-title"></h3>
+                            <p>Meu primeiro site de Portfólio...</p>
+                        </div>
+                    </div>
+
+                    <!-- Projeto 9 -->
+                    <div class="project-card glass-card gsap-stagger-card">
+                        <div class="project-image">
+                            <div class="placeholder-gradient "><img src="images/landingsass.png"
+                                    alt="Landing Page com Sass"></div>
+                            <div class="project-overlay">
+                                <a href="#" class="btn-icon"><svg viewBox="0 0 24 24" width="24" height="24" fill="none"
+                                        stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                        stroke-linejoin="round">
+                                        <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path>
+                                        <polyline points="15 3 21 3 21 9"></polyline>
+                                        <line x1="10" y1="14" x2="21" y2="3"></line>
+                                    </svg></a>
+                                <a href="#" class="btn-icon"><svg viewBox="0 0 24 24" width="24" height="24"
+                                        fill="currentColor">
+                                        <path
+                                            d="M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12" />
+                                    </svg></a>
+                            </div>
+                        </div>
+                        <div class="project-info">
+                            <span class="project-category">Landing Page</span>
+                            <h3 class="project-title">Landing Page com Sass</h3>
+                            <p>Site desenvolvido em Sass com responsividade mobile.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+
+
+                <div class="ver-mais-projetos gsap-fade-up">
+                    <a href="#" class="btn-secondary">Ver mais projetos no GitHub</a>
+                </div>
+            </div>
+        </section>
+
+        <!-- Especialidades Section -->
+        <section id="produtos" class="services-section">
+            <div class="section-container">
+                <h2 class="section-title center-text gsap-reveal">Especialidades</h2>
+                <div class="services-grid">
+                    <div class="service-card glass-card gsap-stagger-card">
+                        <div class="service-icon"><img src="images/computer.svg" alt="computador" style="width: 2rem;">
+                        </div>
+                        <h3>Desenvolvimento Frontend</h3>
+                        <p>Criação de aplicações web interativas, robustas e escaláveis utilizando os frameworks mais
+                            recentes do mercado.</p>
+                    </div>
+                    <div class="service-card glass-card gsap-stagger-card">
+                        <div class="service-icon"><img src="images/design.svg" alt="Design" style="width: 2rem;"></div>
+                        <h3>UI/UX Design</h3>
+                        <p>Design de interfaces limpas, intuitivas e totalmente focadas na melhor experiência para o
+                            usuário final.</p>
+                    </div>
+                    <div class="service-card glass-card gsap-stagger-card">
+                        <div class="service-icon"><img src="images/seo.svg" alt="seo" style="width: 2rem;"></div>
+                        <h3>Otimização e Performance</h3>
+                        <p>Refatoração e otimização para garantir que sua aplicação seja extremamente rápida e bem
+                            ranqueada no Google (SEO).</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Contato Section -->
+        <section class="contato section" id="contato">
+            <div class="section-container">
+                <a href="index.html" class="contato-logo"><img src="/teste/images/logowhite.svg" alt="Logo escuro"
+                        height="80px" width="80px" loading="lazy"></a>
+
+                <div class="contato-container glass-card gsap-fade-up">
+                    <div class="contato-info">
+                        <h2 data-translate="contactTitle">Entre em contato</h2>
+                        <p data-translate="contactText">Estou aqui para ajudar você a criar soluções digitais que
+                            impulsionam o crescimento do seu negócio. Entre em contato e vamos conversar sobre suas
+                            necessidades e como podemos alcançar seus objetivos juntos.</p>
+                        <ul class="contato-lista">
+                            <a href="https://maps.app.goo.gl/sx3tZbpF3bvKUqY39" target="_blank">
+                                <li class="li-contato" data-translate="contactLocalizacao">Localização: Méier, Rio de
+                                    Janeiro - RJ</li>
+                            </a>
+                            <a href="https://wa.me/21983856721" target="_blank">
+                                <li class="li-contato">Whatsapp: <span data-translate="contactClique">Clique aqui para
+                                        conversar</span></li>
+                            </a>
+                            <a href="mailto:gabrielamorimdeceia@gmail.com" target="_blank">
+                                <li class="li-contato">Email: gabrielamorimdeceia@gmail.com</li>
+                            </a>
+                        </ul>
+                        <div class="sobre__icons">
+                            <a href="https://github.com/GbAmorim" target="_blank"><img class="logo-icons"
+                                    src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/github/github-original.svg"
+                                    alt="Logo do github" loading="lazy" style="filter: invert(1); width: 30px;"></a>
+                            <a href="https://www.linkedin.com/in/gabriel-amorim-52b984263/?locale=pt_BR"
+                                target="_blank"><img class="logo-icons"
+                                    src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/linkedin/linkedin-original.svg"
+                                    alt="Logo do linkedin" loading="lazy" style="width: 30px;"></a>
+                        </div>
+                    </div>
+
+                    <div class="contato-formulario">
+                        <h4 data-translate="contactMensagem">Envie sua mensagem</h4>
+                        <form action="https://formsubmit.co/gabrielamorimdeceia@gmail.com" method="POST"
+                            class="contact-form">
+                            <input type="text" name="nome" data-translate="placeholderNome" placeholder="Seu nome"
+                                required>
+                            <input type="email" name="email" data-translate="placeholderEmail" placeholder="Seu e-mail"
+                                required>
+                            <textarea name="mensagem" rows="6" data-translate="placeholderMensagem"
+                                placeholder="Sua mensagem" required></textarea>
+
+                            <input type="hidden" name="_captcha" value="false">
+                            <input type="hidden" name="_subject" value="Novo envio!">
+                            <input type="hidden" name="_next"
+                                value="https://portifolio-gabriel-amorim.vercel.app/obrigado.html">
+
+                            <button class="btn-primary form-submit-btn" type="submit"
+                                data-translate="contactEnviar">Enviar Mensagem</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- FOOTER -->
+    <footer class="footer">
+        <div class="footer-container">
+            <a href="index.html"><img src="/teste/images/logowhite.svg" alt="Logo" height="40px" width="40px"></a>
+            <p>© 2025 Gabriel Amorim</p>
+        </div>
+    </footer>
+
+    <!-- Botão Voltar ao Topo -->
+    <a href="#" class="back-to-top" id="backToTop">
+        <svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="2"
+            stroke-linecap="round" stroke-linejoin="round">
+            <path d="M12 19V5M5 12l7-7 7 7" />
+        </svg>
+    </a>
+
 </body>
+
 </html>
