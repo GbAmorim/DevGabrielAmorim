@@ -1,9 +1,7 @@
-// Transição de página (Lógica original restaurada)
-const transition = document.querySelector('.page-transition');
+// Efeito de flash na tela ao carregar
 const flash = document.querySelector('.screen-flash');
 
 window.addEventListener('pageshow', () => {
-    if (transition) transition.classList.remove('active');
     if (flash) {
         flash.classList.remove('active');
         void flash.offsetWidth; // forçar reflow
@@ -11,20 +9,12 @@ window.addEventListener('pageshow', () => {
     }
 });
 
-// Interceptar links para animação de saída
+// Interceptar links apenas para rolagem suave
 document.querySelectorAll('a').forEach(anchor => {
     anchor.addEventListener('click', function(e) {
         const target = this.getAttribute('href');
         
-        // Só aplica em links internos que não sejam âncoras na mesma página
-        if (target && !target.startsWith('#') && !target.startsWith('mailto:') && !target.startsWith('tel:')) {
-            e.preventDefault();
-            if (transition) transition.classList.add('active');
-            
-            setTimeout(() => {
-                window.location.href = target;
-            }, 800);
-        } else if (target && target.startsWith('#') && target !== '#') {
+        if (target && target.startsWith('#') && target !== '#') {
             // Smooth Scroll for Anchor Links
             e.preventDefault();
             const targetElement = document.querySelector(target);

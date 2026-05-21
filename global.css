@@ -32,7 +32,7 @@ body {
     position: fixed;
     inset: 0;
 
-    background: url("/teste/images/carregamento2.png");
+    background: url("images/carregamento2.png");
 
     z-index: 9999;
 

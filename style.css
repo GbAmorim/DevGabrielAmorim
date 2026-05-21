@@ -34,7 +34,7 @@ body {
     width: 200vw;
     /* Dobro da largura para a animação lateral */
     height: 100vh;
-    background-image: url('/teste/images/389988dcdaef11d7_dirt.jpg');
+    background-image: url('images/389988dcdaef11d7_dirt.jpg');
     background-size: 50% 100%;
     /* Metade da largura do container (100vw) */
     background-repeat: repeat-x;
@@ -52,7 +52,7 @@ body {
     left: 0;
     width: 100vw;
     height: 100vh;
-    background-image: url('/teste/images/e46fc7bc6a6ab7f2_rgba_noise.png');
+    background-image: url('images/e46fc7bc6a6ab7f2_rgba_noise.png');
     background-size: 100px;
     /* Define o tamanho de cada "quadrado" da repetição */
     background-repeat: repeat;
@@ -253,7 +253,7 @@ p {
 }
 
 /* RESPONSIVE DESIGN PARA INDEX.HTML */
-@media (max-width: 900px) {
+@media (max-width: 900px), (orientation: portrait) {
 
     /* Header Responsivo */
     .main-header {
@@ -309,27 +309,37 @@ p {
 
     /* Ajustes Finos para Telas Menores (Celulares) */
     .section {
-        padding: 6rem 0;
+        padding: 5rem 0;
     }
 
     h1 {
-        font-size: 2.5rem;
+        font-size: 2.2rem;
     }
 
     h2 {
-        font-size: 2rem;
+        font-size: 1.8rem;
     }
 
     p {
         font-size: 1rem;
     }
 
+    .main-header {
+        padding: 10px;
+        border-radius: 16px;
+        width: 95%;
+    }
+
     .logo img {
-        width: 60px !important;
+        width: 50px !important;
+    }
+
+    .nav-list {
+        gap: 5px;
     }
 
     .nav-link {
-        padding: 8px 12px;
-        font-size: 0.75rem;
+        padding: 6px 10px;
+        font-size: 0.7rem;
     }
 }

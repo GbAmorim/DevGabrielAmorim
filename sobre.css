@@ -708,6 +708,8 @@ h4 {
 
 .sobre__icons {
     display: flex;
+    align-items: center;
+    justify-content: flex-start;
     gap: 1rem;
 }
 
@@ -777,7 +779,7 @@ h4 {
 }
 
 /* RESPONSIVE UPDATE */
-@media (max-width: 900px) {
+@media (max-width: 900px), (orientation: portrait) {
     .contato-container {
         grid-template-columns: 1fr;
         padding: 2rem;
@@ -785,6 +787,16 @@ h4 {
 
     .about-grid {
         grid-template-columns: 1fr;
+        justify-items: center;
+    }
+
+    .about-image {
+        width: 100%;
+        max-width: 350px;
+    }
+
+    .buttons {
+        flex-wrap: wrap;
     }
 
     .main-header {
@@ -805,6 +817,51 @@ h4 {
     .phone-container {
         display: none;
         /* Hide on mobile to save space */
+    }
+
+    .projects-grid {
+        grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    }
+}
+
+@media (max-width: 480px) {
+    .section-title {
+        font-size: 2.5rem;
+    }
+
+    .contato-container {
+        padding: 1.5rem;
+    }
+
+    .contato-info h2 {
+        font-size: 2rem;
+    }
+
+    .hero-title {
+        font-size: 3rem;
+    }
+
+    .hero-description {
+        font-size: 1rem;
+    }
+
+    .about-text p {
+        font-size: 1rem;
+    }
+
+    .main-header {
+        width: 95%;
+        padding: 10px;
+        border-radius: 16px;
+    }
+
+    .nav-link {
+        padding: 8px 10px;
+        font-size: 0.75rem;
+    }
+    
+    .logo img {
+        width: 50px !important;
     }
 }
 

@@ -218,7 +218,7 @@ loader.load(modelPath, (gltf) => {
     pcGroup.add(computerModel);
 
     // RESPONSIVIDADE DO MODELO 3D
-    const isMobile = window.innerWidth <= 900;
+    const isMobile = window.innerWidth <= 900 || window.innerHeight > window.innerWidth;
 
     if (isMobile) {
         // Ajustes para Celular: mais centralizado, mais para cima e menor
@@ -343,33 +343,13 @@ function setupScrollAnimation() {
         }
     });
 
-    // LÓGICA DE NAVEGAÇÃO INTERATIVA (Entrada na outra página)
-    let isReturning = new URLSearchParams(window.location.search).get('back') === 'true';
-
     ScrollTrigger.create({
         trigger: ".nav-trigger-section",
         start: "top bottom",
         onEnter: () => {
-            // SÓ entra se não estivermos no processo de "retorno"
-            if (!isReturning) {
-                window.location.href = 'outra.html';
-            }
+            window.location.href = 'outra.html';
         }
     });
-
-    // Se estivermos voltando da outra página, inicia no final do scroll
-    if (isReturning) {
-        // Limpa o parâmetro da URL sem recarregar a página para não travar o fluxo
-        const newRelativePathQuery = window.location.pathname;
-        history.replaceState(null, '', newRelativePathQuery);
-
-        // Aguarda o GSAP e o layout e scrola pro fim
-        setTimeout(() => {
-            window.scrollTo(0, document.body.scrollHeight - 150); // Fica um pouco ACIMA do gatilho
-            // Após scrolar, liberamos o gatilho de entrada novamente para o futuro
-            setTimeout(() => { isReturning = false; }, 1000);
-        }, 100);
-    }
 }
 
 
@@ -405,39 +385,3 @@ window.addEventListener('resize', () => {
     renderer.setSize(window.innerWidth, window.innerHeight);
     renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
 });
-
-
-const transition = document.querySelector('.page-transition')
-
-document.querySelectorAll('a').forEach(link => {
-
-    link.addEventListener('click', (e) => {
-
-        const href = link.getAttribute('href')
-
-        // ignora links inválidos
-        if (
-            href.startsWith('#') ||
-            href.startsWith('tel:') ||
-            href.startsWith('mailto:')
-        ) {
-            return
-        }
-
-        e.preventDefault()
-
-        transition.classList.add('active')
-
-        setTimeout(() => {
-            window.location.href = href
-        }, 700)
-
-    })
-
-})
-
-window.addEventListener('pageshow', () => {
-
-    transition.classList.remove('active')
-
-})
