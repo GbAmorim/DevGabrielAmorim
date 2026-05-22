@@ -1,6 +1,29 @@
 // Registra o Plugin ScrollTrigger
 gsap.registerPlugin(ScrollTrigger);
 
+// Define o wrapper como scroll padrão do GSAP para evitar a barra de tarefas do celular
+ScrollTrigger.defaults({
+    scroller: ".scroll-wrapper"
+});
+
+// Inicialização do Lenis (Smooth Scroll)
+const lenis = new Lenis({
+    wrapper: document.querySelector('.scroll-wrapper'),
+    content: document.querySelector('.scroll-content'),
+    duration: 1.2,
+    easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
+    smoothWheel: true,
+    smoothTouch: false, // Permite o feeling nativo no touch
+});
+
+lenis.on('scroll', ScrollTrigger.update);
+
+gsap.ticker.add((time) => {
+    lenis.raf(time * 1000);
+});
+
+gsap.ticker.lagSmoothing(0);
+
 /**
  * ==========================================
  * 1. CONFIGURAÇÃO DO ENQUADRAMENTO DA CÂMERA
@@ -379,7 +402,13 @@ const tick = () => {
 };
 tick();
 
+let windowWidth = window.innerWidth;
 window.addEventListener('resize', () => {
+    // Evita recalcular tudo no mobile se for apenas uma alteração de altura (ex: barra do nav)
+    if (window.innerWidth === windowWidth && window.innerWidth <= 900) {
+        return;
+    }
+    windowWidth = window.innerWidth;
     camera.aspect = window.innerWidth / window.innerHeight;
     camera.updateProjectionMatrix();
     renderer.setSize(window.innerWidth, window.innerHeight);

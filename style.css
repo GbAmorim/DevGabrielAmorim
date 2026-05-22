@@ -6,6 +6,9 @@
 
 html,
 body {
+    height: 100%;
+    overflow: hidden; /* Fixa a barra de tarefas do navegador no celular */
+    overscroll-behavior: none; /* Evita o bounce nativo do celular */
     scrollbar-width: none;
     /* Firefox */
     -ms-overflow-style: none;
@@ -25,6 +28,24 @@ body {
     background-color: #000000;
     color: #ffffff;
     overflow-x: hidden;
+}
+
+.scroll-wrapper {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    overflow-y: auto;
+    overflow-x: hidden;
+    z-index: 2; /* Acima do 3D */
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+}
+
+.scroll-wrapper::-webkit-scrollbar {
+    display: none;
 }
 
 .screen-overlay {
@@ -91,7 +112,6 @@ body {
 
 .scroll-content {
     position: relative;
-    z-index: 2;
     width: 50vw;
     pointer-events: auto;
 }
