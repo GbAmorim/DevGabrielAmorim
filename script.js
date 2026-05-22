@@ -1,16 +1,13 @@
 // Registra o Plugin ScrollTrigger
 gsap.registerPlugin(ScrollTrigger);
 
-// Define o wrapper como scroll padrão do GSAP para evitar a barra de tarefas do celular
-ScrollTrigger.defaults({
-    scroller: ".scroll-wrapper"
-});
+// Detecção de mobile para otimizações de performance
+const isMobileDevice = /Android|iPhone|iPad|iPod|Opera Mini|IEMobile|WPDesktop/i.test(navigator.userAgent)
+    || (window.innerWidth <= 900 || window.innerHeight > window.innerWidth);
 
-// Inicialização do Lenis (Smooth Scroll)
+// Inicialização do Lenis (Smooth Scroll) — usando window padrão
 const lenis = new Lenis({
-    wrapper: document.querySelector('.scroll-wrapper'),
-    content: document.querySelector('.scroll-content'),
-    duration: 1.2,
+    duration: isMobileDevice ? 0.8 : 1.2,
     easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
     smoothWheel: true,
     smoothTouch: false, // Permite o feeling nativo no touch
@@ -69,11 +66,12 @@ camera.lookAt(currentLookAt.x, currentLookAt.y, currentLookAt.z);
 
 const renderer = new THREE.WebGLRenderer({
     canvas: canvas,
-    antialias: true
-    // SEM alpha:true — usamos scene.background para controlar o fundo
+    antialias: !isMobileDevice, // Desativa antialiasing no mobile para ganhar performance
+    powerPreference: isMobileDevice ? 'low-power' : 'high-performance'
 });
 renderer.setSize(window.innerWidth, window.innerHeight);
-renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+// No mobile, limita o pixel ratio a 1.5 para reduzir carga de GPU
+renderer.setPixelRatio(isMobileDevice ? Math.min(window.devicePixelRatio, 1.5) : Math.min(window.devicePixelRatio, 2));
 
 // outputEncoding GARANTE que as cores do GLB fiquem fiéis ao Blender.
 // Sem isso, modelos PBR (.glb) ficam escuros/lavados.
@@ -381,26 +379,43 @@ function setupScrollAnimation() {
  * 5. LOOP E RESPONSIVIDADE
  * ==========================================
  */
-const tick = () => {
+
+// Controle de FPS para mobile — renderiza no máximo a cada ~33ms (30fps) no mobile
+const TARGET_FPS = isMobileDevice ? 30 : 60;
+const FRAME_INTERVAL = 1000 / TARGET_FPS;
+let lastFrameTime = 0;
+let colorSampleCounter = 0;
+const COLOR_SAMPLE_EVERY = isMobileDevice ? 6 : 2; // Amostra cor menos vezes por segundo no mobile
+
+const tick = (timestamp) => {
+    requestAnimationFrame(tick);
+
+    // Limita FPS no mobile
+    const elapsed = timestamp - lastFrameTime;
+    if (elapsed < FRAME_INTERVAL) return;
+    lastFrameTime = timestamp - (elapsed % FRAME_INTERVAL);
+
     // Atualiza a animação do canvas da tela
     drawScreenContent();
     screenTexture.needsUpdate = true;
 
-    // Captura a cor média da tela para a luz dinâmica
-    try {
-        sampleCtx.drawImage(screenCanvas, 0, 0, 1, 1);
-        const pixelData = sampleCtx.getImageData(0, 0, 1, 1).data;
-        const targetColor = new THREE.Color(`rgb(${pixelData[0]}, ${pixelData[1]}, ${pixelData[2]})`);
-        screenLight.color.lerp(targetColor, 0.1);
-    } catch (e) {
-        // Silenciosamente ignora erros de CORS no Ambilight para não travar o site
-        // Se houver erro de CORS, a luz ficará branca (padrão)
+    // Captura a cor média da tela para a luz dinâmica (menos frequente no mobile)
+    colorSampleCounter++;
+    if (colorSampleCounter >= COLOR_SAMPLE_EVERY) {
+        colorSampleCounter = 0;
+        try {
+            sampleCtx.drawImage(screenCanvas, 0, 0, 1, 1);
+            const pixelData = sampleCtx.getImageData(0, 0, 1, 1).data;
+            const targetColor = new THREE.Color(`rgb(${pixelData[0]}, ${pixelData[1]}, ${pixelData[2]})`);
+            screenLight.color.lerp(targetColor, 0.1);
+        } catch (e) {
+            // Silenciosamente ignora erros de CORS no Ambilight para não travar o site
+        }
     }
 
     renderer.render(scene, camera);
-    requestAnimationFrame(tick);
 };
-tick();
+requestAnimationFrame(tick);
 
 let windowWidth = window.innerWidth;
 window.addEventListener('resize', () => {
@@ -412,5 +427,6 @@ window.addEventListener('resize', () => {
     camera.aspect = window.innerWidth / window.innerHeight;
     camera.updateProjectionMatrix();
     renderer.setSize(window.innerWidth, window.innerHeight);
-    renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+    const dpr = isMobileDevice ? Math.min(window.devicePixelRatio, 1.5) : Math.min(window.devicePixelRatio, 2);
+    renderer.setPixelRatio(dpr);
 });
