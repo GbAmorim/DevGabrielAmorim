@@ -11,14 +11,14 @@ window.addEventListener('pageshow', () => {
 
 // Interceptar links apenas para rolagem suave
 document.querySelectorAll('a').forEach(anchor => {
-    anchor.addEventListener('click', function(e) {
+    anchor.addEventListener('click', function (e) {
         const target = this.getAttribute('href');
-        
+
         if (target && target.startsWith('#') && target !== '#') {
             // Smooth Scroll for Anchor Links
             e.preventDefault();
             const targetElement = document.querySelector(target);
-            if(targetElement) {
+            if (targetElement) {
                 window.scrollTo({
                     top: targetElement.offsetTop,
                     behavior: 'smooth'
@@ -36,10 +36,10 @@ document.addEventListener("DOMContentLoaded", () => {
         // Hero Animations
         const tl = gsap.timeline();
         tl.from(".hero-subtitle", { y: 30, opacity: 0, duration: 0.8, ease: "power3.out", delay: 0.2 })
-          .from(".hero-title", { y: 50, opacity: 0, duration: 1, ease: "power4.out" }, "-=0.5")
-          .from(".hero-description", { y: 30, opacity: 0, duration: 0.8, ease: "power3.out" }, "-=0.6")
-          .from(".hero-actions", { y: 20, opacity: 0, duration: 0.8, ease: "power2.out" }, "-=0.6")
-          .from(".marquee-container", { opacity: 0, duration: 1.5, ease: "power2.inOut" }, "-=0.5");
+            .from(".hero-title", { y: 50, opacity: 0, duration: 1, ease: "power4.out" }, "-=0.5")
+            .from(".hero-description", { y: 30, opacity: 0, duration: 0.8, ease: "power3.out" }, "-=0.6")
+            .from(".hero-actions", { y: 20, opacity: 0, duration: 0.8, ease: "power2.out" }, "-=0.6")
+            .from(".marquee-container", { opacity: 0, duration: 1.5, ease: "power2.inOut" }, "-=0.5");
 
         // ScrollTrigger: Fade Up General
         gsap.utils.toArray('.gsap-fade-up').forEach(element => {

@@ -753,9 +753,11 @@ h4 {
 }
 
 .form-submit-btn {
-    align-self: flex-start;
+    align-self: center;
     cursor: pointer;
     border: none;
+    width: 100%;
+    max-width: 300px;
 }
 
 /* FOOTER */
@@ -779,7 +781,8 @@ h4 {
 }
 
 /* RESPONSIVE UPDATE */
-@media (max-width: 900px), (orientation: portrait) {
+@media (max-width: 900px),
+(orientation: portrait) {
     .contato-container {
         grid-template-columns: 1fr;
         padding: 2rem;
@@ -859,7 +862,7 @@ h4 {
         padding: 8px 10px;
         font-size: 0.75rem;
     }
-    
+
     .logo img {
         width: 50px !important;
     }

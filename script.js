@@ -26,6 +26,7 @@ gsap.ticker.lagSmoothing(0);
  * 1. CONFIGURAÇÃO DO ENQUADRAMENTO DA CÂMERA
  * ==========================================
  */
+window.addEventListener('load', () => {
 const zoomConfig = {
     // ESTADO INICIAL (No topo da página)
     // Câmera levemente acima e à direita, olhando para o computador
@@ -70,8 +71,8 @@ const renderer = new THREE.WebGLRenderer({
     powerPreference: isMobileDevice ? 'low-power' : 'high-performance'
 });
 renderer.setSize(window.innerWidth, window.innerHeight);
-// No mobile, limita o pixel ratio a 1.5 para reduzir carga de GPU
-renderer.setPixelRatio(isMobileDevice ? Math.min(window.devicePixelRatio, 1.5) : Math.min(window.devicePixelRatio, 2));
+// No mobile, limita o pixel ratio a 1 para reduzir carga de GPU (melhora drástica de performance)
+renderer.setPixelRatio(isMobileDevice ? 1 : Math.min(window.devicePixelRatio, 2));
 
 // outputEncoding GARANTE que as cores do GLB fiquem fiéis ao Blender.
 // Sem isso, modelos PBR (.glb) ficam escuros/lavados.
@@ -123,8 +124,9 @@ const modelPath = 'computador.glb';
  * simulando projetos/vídeos passando. Funciona sem CORS!
  */
 const screenCanvas = document.createElement('canvas');
-screenCanvas.width = 512;
-screenCanvas.height = 288; // ~16:9
+// No mobile renderizamos a tela do monitor em menor resolução para poupar a CPU/GPU
+screenCanvas.width = isMobileDevice ? 256 : 512;
+screenCanvas.height = isMobileDevice ? 144 : 288; // ~16:9
 const ctx = screenCanvas.getContext('2d');
 
 // Vídeo fonte da tela
@@ -368,7 +370,7 @@ function setupScrollAnimation() {
         trigger: ".nav-trigger-section",
         start: "top bottom",
         onEnter: () => {
-            window.location.href = 'outra.html';
+            window.location.href = 'sobre.html';
         }
     });
 }
@@ -399,17 +401,19 @@ const tick = (timestamp) => {
     drawScreenContent();
     screenTexture.needsUpdate = true;
 
-    // Captura a cor média da tela para a luz dinâmica (menos frequente no mobile)
-    colorSampleCounter++;
-    if (colorSampleCounter >= COLOR_SAMPLE_EVERY) {
-        colorSampleCounter = 0;
-        try {
-            sampleCtx.drawImage(screenCanvas, 0, 0, 1, 1);
-            const pixelData = sampleCtx.getImageData(0, 0, 1, 1).data;
-            const targetColor = new THREE.Color(`rgb(${pixelData[0]}, ${pixelData[1]}, ${pixelData[2]})`);
-            screenLight.color.lerp(targetColor, 0.1);
-        } catch (e) {
-            // Silenciosamente ignora erros de CORS no Ambilight para não travar o site
+    // Captura a cor média da tela para a luz dinâmica (desativado no mobile para poupar performance)
+    if (!isMobileDevice) {
+        colorSampleCounter++;
+        if (colorSampleCounter >= COLOR_SAMPLE_EVERY) {
+            colorSampleCounter = 0;
+            try {
+                sampleCtx.drawImage(screenCanvas, 0, 0, 1, 1);
+                const pixelData = sampleCtx.getImageData(0, 0, 1, 1).data;
+                const targetColor = new THREE.Color(`rgb(${pixelData[0]}, ${pixelData[1]}, ${pixelData[2]})`);
+                screenLight.color.lerp(targetColor, 0.1);
+            } catch (e) {
+                // Silenciosamente ignora erros de CORS no Ambilight para não travar o site
+            }
         }
     }
 
@@ -427,6 +431,8 @@ window.addEventListener('resize', () => {
     camera.aspect = window.innerWidth / window.innerHeight;
     camera.updateProjectionMatrix();
     renderer.setSize(window.innerWidth, window.innerHeight);
-    const dpr = isMobileDevice ? Math.min(window.devicePixelRatio, 1.5) : Math.min(window.devicePixelRatio, 2);
+    const dpr = isMobileDevice ? 1 : Math.min(window.devicePixelRatio, 2);
     renderer.setPixelRatio(dpr);
 });
+
+}); // Fim do window.addEventListener('load')

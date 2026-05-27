@@ -4,23 +4,26 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Animação Scroll Zoom - Área Específica</title>
+    <link rel="icon" type="image/svg+xml" href="images/logowhite.svg">
+    <title>Gabriel Amorim - Desenvolvedor Front-end</title>
+    <meta name="description"
+        content="Portfólio de Gabriel Amorim, Desenvolvedor Front-end especializado em interfaces modernas, animações interativas e performance.">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link
         href="https://fonts.googleapis.com/css2?family=Bruno+Ace+SC&family=Tinos:ital,wght@0,400;0,700;1,400;1,700&display=swap"
         rel="stylesheet">
-    <link rel="stylesheet" href="style.css">
-    <link rel="stylesheet" href="global.css">
+    <link rel="stylesheet" href="style.min.css">
+    <link rel="stylesheet" href="global.min.css">
 
     <!-- Importando Three.js e Loaders -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/three@0.128.0/examples/js/loaders/GLTFLoader.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/three@0.128.0/examples/js/loaders/DRACOLoader.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js" defer></script>
+    <script src="https://cdn.jsdelivr.net/npm/three@0.128.0/examples/js/loaders/GLTFLoader.js" defer></script>
+    <script src="https://cdn.jsdelivr.net/npm/three@0.128.0/examples/js/loaders/DRACOLoader.js" defer></script>
 
     <!-- Importando GSAP e ScrollTrigger -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js" defer></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js" defer></script>
 
     <!-- Importando Lenis para Smooth Scroll -->
     <script src="https://unpkg.com/@studio-freight/lenis@1.0.42/dist/lenis.min.js"></script>
@@ -28,7 +31,6 @@
 
 <body>
 
-    <div class="page-transition"></div>
     <!-- Camadas de Efeito Frontal -->
     <div class="screen-overlay"></div>
     <div class="screen-overlay-2"></div>
@@ -36,13 +38,13 @@
     <!-- Cabeçalho Distribuído -->
     <header class="main-header">
         <div class="logo">
-            <img src="images/logowhite.svg" alt="" style="width: 80px;">
+            <img src="images/logowhite.svg" alt="Logo" width="80" height="80">
         </div>
 
         <nav class="nav-container">
             <ul class="nav-list">
                 <li class="nav-item"><a href="#" class="nav-link">Home</a></li>
-                <li class="nav-item"><a href="outra.html" class="nav-link">Sobre</a></li>
+                <li class="nav-item"><a href="sobre.html" class="nav-link">Sobre</a></li>
                 <li class="nav-item"><a href="#" class="nav-link">Projetos</a></li>
                 <li class="nav-item"><a href="#" class="nav-link">Contato</a></li>
             </ul>
@@ -50,7 +52,7 @@
 
         <div class="phone-container">
             <a href="tel:+5511999999999" class="phone-link">
-                <img src="images/whatsapp.svg" class="phone-icon"> Whatsapp
+                <img src="images/whatsapp.svg" class="phone-icon" width="24" height="24" alt="Whatsapp"> Whatsapp
             </a>
         </div>
     </header>
@@ -61,7 +63,7 @@
     </div>
 
     <!-- Vídeo oculto para ser usado na tela do monitor 3D -->
-    <video id="video-source" style="display: none;" loop muted playsinline autoplay crossorigin="anonymous">
+    <video id="video-source" style="display: none;" loop muted playsinline preload="none" crossorigin="anonymous">
         <!-- Vídeo de teste funcional -->
         <source src="video.mp4" type="video/mp4">
         <!-- Fallback: se o primeiro não carregar -->
@@ -72,32 +74,41 @@
     <main class="scroll-content">
         <section class="section primeira">
             <h1>Desenvolvedor Front-end</h1>
-            <p>Role a página e descubra como transformo linhas de código em experiências digitais imersivas e de alto
-                impacto.</p>
-            <img class="imagemseta" src="images/arrow.svg" alt="seta para baixo">
+            <div class="setacentralizada">
+                <p>Role a página e descubra como transformo linhas de código em experiências digitais imersivas e de
+                    alto
+                    impacto.</p>
+                <img class="imagemseta" src="images/arrow.svg" alt="seta para baixo" width="30" height="30">
+            </div>
 
         </section>
 
-        <section class="section" style="height: 100vh;">
+        <section class="section">
             <h2>Sua Próxima Experiência Digital <br> Começa Aqui.</h2>
-            <p>Desenvolvedor Front-end focado em performance e design intuitivo. Continue descendo para explorar um
-                portfólio feito para surpreender você.</p>
-            <img class="imagemseta" src="images/arrow.svg" alt="seta para baixo">
+            <div class="setacentralizada">
+                <p>Desenvolvedor Front-end focado em performance e design intuitivo. Continue descendo para explorar um
+                    portfólio feito para surpreender você.</p>
+                <img class="imagemseta" src="images/arrow.svg" alt="seta para baixo" width="30" height="30">
+            </div>
+
         </section>
 
         <section class="section fade-out-section">
             <!-- Este texto e área desaparecerão na última etapa para mostrar 100% da tela do PC -->
             <h2>Interfaces Inteligentes. Resultados Reais.</h2>
-            <p>Transformo ideias complexas em interfaces limpas e prontas para o mercado. Continue descendo e veja a
-                mágica acontecer.</p>
-            <img class="imagemseta" src="images/arrow.svg" alt="seta para baixo">
+            <div class="setacentralizada">
+                <p>Transformo ideias complexas em interfaces limpas e prontas para o mercado. Continue descendo e veja a
+                    mágica acontecer.</p>
+                <img class="imagemseta" src="images/arrow.svg" alt="seta para baixo" width="30" height="30">
+            </div>
+
         </section>
 
         <!-- Seção extra para dar "espaço" ao gatilho de navegação -->
         <section class="nav-trigger-section" style="height: 50vh;"></section>
     </main>
 
-    <script src="script.js" defer></script>
+    <script src="script.min.js" defer></script>
 </body>
 
 </html>

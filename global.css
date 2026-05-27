@@ -28,26 +28,7 @@ body {
 }
 
 
-.page-transition {
-    position: fixed;
-    inset: 0;
 
-    background: url("images/carregamento2.png");
-
-    z-index: 9999;
-
-    transform: scaleY(0);
-    transform-origin: bottom;
-
-    transition: transform 0.7s ease;
-}
-
-/* quando ativa */
-.page-transition.active {
-    transform: scaleY(1);
-}
-
-/* animação de entrada */
 
 
 /* Animação de Brilho ao entrar */
