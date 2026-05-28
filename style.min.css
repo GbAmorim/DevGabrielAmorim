@@ -29,7 +29,7 @@ body {
     top: 0;
     left: 0;
     width: 200vw;
-    height: 100dvh;
+    height: 100vh;
     background-image: url('images/389988dcdaef11d7_dirt.jpg');
     background-size: 50% 100%;
     background-repeat: repeat-x;
@@ -46,7 +46,7 @@ body {
     top: 0;
     left: 0;
     width: 100vw;
-    height: 100dvh;
+    height: 100vh;
     background-image: url('images/e46fc7bc6a6ab7f2_rgba_noise.png');
     background-size: 100px;
     background-repeat: repeat;
@@ -71,7 +71,7 @@ body {
     top: 0;
     left: 0;
     width: 100vw;
-    height: 100dvh;
+    height: 100vh;
     z-index: 1;
     pointer-events: none;
 }
@@ -90,7 +90,7 @@ body {
 }
 
 .section {
-    min-height: 100dvh;
+    min-height: 100vh;
     display: flex;
     gap: 1rem;
     flex-direction: column;

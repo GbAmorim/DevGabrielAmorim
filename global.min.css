@@ -1,1 +1,68 @@
-*{margin:0;padding:0;box-sizing:border-box}body,html{scrollbar-width:none;-ms-overflow-style:none}body::-webkit-scrollbar,html::-webkit-scrollbar{display:none;width:0;height:0}body{font-family:'Segoe UI',Tahoma,Geneva,Verdana,sans-serif;background-color:#000;color:#fff;overflow-x:hidden}.screen-flash{position:fixed;top:50%;left:50%;width:10px;height:10px;background:#fff;border-radius:50%;transform:translate(-50%,-50%);z-index:10000;pointer-events:none;box-shadow:0 0 100px 50px #fff;opacity:0}.screen-flash.active{animation:flash-expand 1.2s ease-out forwards}@keyframes flash-expand{0%{transform:translate(-50%,-50%) scale(1);opacity:1;box-shadow:0 0 100px 50px #fff}30%{box-shadow:0 0 200px 100px #fff}100%{transform:translate(-50%,-50%) scale(500);opacity:0;box-shadow:0 0 0 0 transparent}}
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html,
+body {
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+}
+
+html::-webkit-scrollbar,
+body::-webkit-scrollbar {
+    display: none;
+    width: 0;
+    height: 0;
+}
+
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: #000000;
+    color: #ffffff;
+    overflow-x: hidden;
+}
+
+.screen-flash {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    width: 10px;
+    height: 10px;
+    background: white;
+    border-radius: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 10000;
+    pointer-events: none;
+    box-shadow: 0 0 100px 50px white;
+    opacity: 0;
+}
+
+.screen-flash.active {
+    animation: flash-expand 1.2s ease-out forwards;
+}
+
+@keyframes flash-expand {
+    0% {
+        transform: translate(-50%, -50%) scale(1);
+        opacity: 1;
+        box-shadow: 0 0 100px 50px white;
+    }
+
+    30% {
+        box-shadow: 0 0 200px 100px white;
+    }
+
+    100% {
+        transform: translate(-50%, -50%) scale(500);
+        opacity: 0;
+        box-shadow: 0 0 0 0 transparent;
+    }
+}
+
+.main-header,
+.nav-link,
+.phone-link {
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif !important;
+}
