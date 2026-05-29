@@ -29,8 +29,8 @@ body {
     top: 0;
     left: 0;
     width: 200vw;
-    height: 100vh;
-    background-image: url('images/389988dcdaef11d7_dirt.jpg');
+    height: 100dvh;
+    background-image: url('images/389988dcdaef11d7_dirt.webp');
     background-size: 50% 100%;
     background-repeat: repeat-x;
     background-position: center;
@@ -46,8 +46,8 @@ body {
     top: 0;
     left: 0;
     width: 100vw;
-    height: 100vh;
-    background-image: url('images/e46fc7bc6a6ab7f2_rgba_noise.png');
+    height: 100dvh;
+    background-image: url('images/e46fc7bc6a6ab7f2_rgba_noise.webp');
     background-size: 100px;
     background-repeat: repeat;
     z-index: 201;
@@ -71,7 +71,7 @@ body {
     top: 0;
     left: 0;
     width: 100vw;
-    height: 100vh;
+    height: 100dvh;
     z-index: 1;
     pointer-events: none;
 }
@@ -90,7 +90,7 @@ body {
 }
 
 .section {
-    min-height: 100vh;
+    min-height: 100dvh;
     display: flex;
     gap: 1rem;
     flex-direction: column;

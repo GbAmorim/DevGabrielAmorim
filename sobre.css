@@ -632,7 +632,13 @@ h4 {
     transform: scale(1.1) translateY(-3px);
 }
 
-.contato-formulario h4 {
+.contato-formulario {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+}
+
+.contato-formulario h3 {
     font-size: 1.5rem;
     margin-bottom: 1.5rem;
 }

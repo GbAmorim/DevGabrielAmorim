@@ -33,7 +33,7 @@ body {
     left: 0;
     width: 200vw;
     /* Dobro da largura para a animação lateral */
-    height: 100vh;
+    height: 100dvh;
     background-image: url('images/389988dcdaef11d7_dirt.webp');
     background-size: 50% 100%;
     /* Metade da largura do container (100vw) */
@@ -51,7 +51,7 @@ body {
     top: 0;
     left: 0;
     width: 100vw;
-    height: 100vh;
+    height: 100dvh;
     background-image: url('images/e46fc7bc6a6ab7f2_rgba_noise.webp');
     background-size: 100px;
     /* Define o tamanho de cada "quadrado" da repetição */
@@ -78,7 +78,7 @@ body {
     top: 0;
     left: 0;
     width: 100vw;
-    height: 100vh;
+    height: 100dvh;
     z-index: 1;
     pointer-events: none;
 }
@@ -97,7 +97,7 @@ body {
 }
 
 .section {
-    min-height: 100vh;
+    min-height: 100dvh;
     display: flex;
     gap: 1rem;
     flex-direction: column;

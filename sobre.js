@@ -122,3 +122,75 @@ if (backToTopBtn) {
         });
     });
 }
+
+// Interceptar form submission para popup customizado
+const contactForm = document.querySelector('.contact-form');
+if (contactForm) {
+    contactForm.addEventListener('submit', function(e) {
+        e.preventDefault();
+        
+        const submitBtn = contactForm.querySelector('button[type="submit"]');
+        const originalBtnText = submitBtn.textContent;
+        submitBtn.textContent = "Enviando...";
+        submitBtn.disabled = true;
+
+        fetch(contactForm.action, {
+            method: 'POST',
+            body: new FormData(contactForm),
+            headers: {
+                'Accept': 'application/json'
+            }
+        })
+        .then(response => {
+            if (response.ok) {
+                showPopup("Mensagem enviada com sucesso!", true);
+                contactForm.reset();
+            } else {
+                showPopup("Ocorreu um erro ao enviar. Tente novamente.", false);
+            }
+        })
+        .catch(error => {
+            showPopup("Erro de conexão. Tente novamente.", false);
+        })
+        .finally(() => {
+            submitBtn.textContent = originalBtnText;
+            submitBtn.disabled = false;
+        });
+    });
+
+    function showPopup(message, isSuccess) {
+        const popup = document.createElement('div');
+        popup.style.cssText = `
+            position: fixed;
+            top: 20px;
+            left: 50%;
+            transform: translateX(-50%) translateY(-20px);
+            padding: 15px 25px;
+            border-radius: 8px;
+            background: ${isSuccess ? 'rgba(40, 167, 69, 0.95)' : 'rgba(220, 53, 69, 0.95)'};
+            color: #fff;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+            z-index: 9999;
+            font-family: 'Inter', sans-serif;
+            font-weight: 500;
+            opacity: 0;
+            transition: all 0.4s ease;
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255,255,255,0.1);
+        `;
+        popup.textContent = message;
+
+        document.body.appendChild(popup);
+
+        void popup.offsetWidth;
+
+        popup.style.opacity = '1';
+        popup.style.transform = 'translateX(-50%) translateY(0)';
+
+        setTimeout(() => {
+            popup.style.opacity = '0';
+            popup.style.transform = 'translateX(-50%) translateY(-20px)';
+            setTimeout(() => popup.remove(), 400);
+        }, 3000);
+    }
+}
